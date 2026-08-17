@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }} - Future Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 20% 50%, rgba(10, 60, 150, 0.3) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, rgba(0, 200, 255, 0.15) 0%, transparent 60%),
+                        #0a0a0a;
+        }
+        .navbar {
+            background: rgba(10, 10, 10, 0.85) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+        }
+        .navbar-brand {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 200, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        .book-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .book-author {
+            color: rgba(0, 200, 255, 0.8);
+            font-size: 1.3rem;
+        }
+        .book-genre {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.15), rgba(123, 47, 252, 0.15));
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            color: #00d4ff;
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .detail-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            min-width: 120px;
+            display: inline-block;
+        }
+        .detail-value {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .btn-neon {
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            border: none;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-neon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(0, 200, 255, 0.4);
+            color: #fff;
+        }
+        .btn-warning {
+            background: rgba(255, 193, 7, 0.15);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border-radius: 50px;
+            padding: 12px 30px;
+        }
+        .btn-warning:hover {
+            background: rgba(255, 193, 7, 0.25);
+            border-color: #ffc107;
+            color: #fff;
+        }
+        .btn-danger {
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            color: #ff4444;
+            border-radius: 50px;
+            padding: 12px 30px;
+        }
+        .btn-danger:hover {
+            background: rgba(255, 0, 0, 0.25);
+            border-color: #ff4444;
+            color: #fff;
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            padding: 12px 30px;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        hr {
+            border-color: rgba(0, 200, 255, 0.1);
+        }
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+        }
+        .modal-title {
+            color: #fff;
+        }
+        .modal-body {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .modal-footer {
+            border-top: 1px solid rgba(0, 200, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-book-open" style="-webkit-text-fill-color: initial; color: #00d4ff;"></i> FutureLibrary
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h1 class="book-title">{{ book.title }}</h1>
+                            <p class="book-author"><i class="fas fa-user"></i> {{ book.author }}</p>
+                        </div>
+                        <span class="book-genre">{{ book.genre }}</span>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="mb-4">
+                        <h5 style="color:rgba(255,255,255,0.5); font-weight:600; letter-spacing:1px;">
+                            <i class="fas fa-align-left"></i> Description
+                        </h5>
+                        <p style="font-size:1.1rem; line-height:1.8; color:rgba(255,255,255,0.7);">
+                            {{ book.description or 'No description available.' }}
+                        </p>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <span class="detail-label"><i class="far fa-calendar-alt"></i> Year Published</span>
+                            <span class="detail-value">{{ book.year_published or 'N/A' }}</span>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <span class="detail-label"><i class="fas fa-barcode"></i> ISBN</span>
+                            <span class="detail-value">{{ book.isbn or 'N/A' }}</span>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a href="/" class="btn-secondary btn">
+                            <i class="fas fa-arrow-left"></i> Back to Library
+                        </a>
+                        <a href="/edit/{{ book.id }}" class="btn-warning btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <button class="btn-danger btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete <strong style="color:#00d4ff;">"{{ book.title }}"</strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form action="/delete/{{ book.id }}" method="POST">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book - Future Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 20% 50%, rgba(10, 60, 150, 0.3) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, rgba(0, 200, 255, 0.15) 0%, transparent 60%),
+                        #0a0a0a;
+        }
+        .navbar {
+            background: rgba(10, 10, 10, 0.85) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+        }
+        .navbar-brand {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 200, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        .card h3 {
+            font-family: 'Orbitron', monospace;
+            color: #00d4ff;
+        }
+        .form-control, .form-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 200, 255, 0.15);
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .form-control:focus, .form-select:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 200, 255, 0.1);
+            color: #fff;
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .form-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .btn-neon {
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            border: none;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-neon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(0, 200, 255, 0.4);
+            color: #fff;
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            padding: 12px 30px;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .form-select option {
+            background: #1a1a2e;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-book-open" style="-webkit-text-fill-color: initial; color: #00d4ff;"></i> FutureLibrary
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <h3><i class="fas fa-plus" style="color:#00d4ff;"></i> Add New Book</h3>
+                    <hr style="border-color: rgba(0,200,255,0.1);">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Title *</label>
+                            <input type="text" name="title" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Author *</label>
+                            <input type="text" name="author" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Genre *</label>
+                            <select name="genre" class="form-select" required>
+                                <option value="">Select a genre</option>
+                                <option value="Classic">Classic</option>
+                                <option value="Sci-Fi">Sci-Fi</option>
+                                <option value="Fantasy">Fantasy</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Mystery">Mystery</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Non-Fiction">Non-Fiction</option>
+                                <option value="Young Adult">Young Adult</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="description" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Year Published</label>
+                                <input type="number" name="year_published" class="form-control" min="1000" max="2026">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">ISBN</label>
+                                <input type="text" name="isbn" class="form-control">
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn-neon">
+                                <i class="fas fa-save"></i> Add Book
+                            </button>
+                            <a href="/" class="btn-secondary btn">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
